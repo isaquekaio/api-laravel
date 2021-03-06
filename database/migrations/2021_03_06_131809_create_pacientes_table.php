@@ -20,13 +20,13 @@ class CreatePacientesTable extends Migration
             $table->char('sus', 15);
 
             $table->unsignedBigInteger('uf_id');
-            $table->foreign('uf_id')->references('id')->on('ufs');
+            $table->foreign('uf_id')->references('id')->on('ufs')->onDelete('cascade');;
 
             $table->unsignedBigInteger('municipio_id');
-            $table->foreign('municipio_id')->references('id')->on('municipios');
+            $table->foreign('municipio_id')->references('id')->on('municipios')->onDelete('cascade');;
 
             $table->unsignedBigInteger('sexo_id');
-            $table->foreign('sexo_id')->references('id')->on('sexos');
+            $table->foreign('sexo_id')->references('id')->on('sexos')->onDelete('cascade');;
 
             $table->timestamps();
         });
