@@ -1,0 +1,34 @@
+# v3 syntax
+version: '3.9'
+
+# Named volumes
+volumes:
+  # Postgres Data
+  db-data:
+    driver: local
+
+services:
+  db:
+    image: postgres:10-alpine
+    container_name: "lais-data"
+    environment:
+      - POSTGRES_USER=posgres
+      - POSTGRES_PASSWORD=pgpass
+      - POSTGRES_DB=posgres
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+  app:
+    image: ambientum/php:7.3-nginx
+    container_name: "lais-app"
+    volumes:
+      - .:/var/www/app
+    ports:
+      - "8000:8080"
+    links:
+      - db
+
+volumes:
+  db-data:
+  .:
