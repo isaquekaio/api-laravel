@@ -10,10 +10,9 @@ class Uf extends Model
     use HasFactory;
 
     protected $fillable = ['nome', 'sigla'];
-    /*
+    
     public function municipios()
     {
         return $this->hasMany(Municipio::class);
     }
-    */
 }
