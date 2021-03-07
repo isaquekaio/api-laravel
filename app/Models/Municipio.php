@@ -16,4 +16,13 @@ class Municipio extends Model
         return $this->belongsTo(State::class, 'uf_id');
     }
 
+    public function pacientes()
+    {
+        return $this->hasMany(Paciente::class);
+    }
+
+    public function pesquisadores()
+    {
+        return $this->hasMany(Pesquisador::class);
+    }
 }

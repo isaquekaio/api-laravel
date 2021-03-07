@@ -15,4 +15,14 @@ class Uf extends Model
     {
         return $this->hasMany(Municipio::class);
     }
+
+    public function pacientes()
+    {
+        return $this->hasMany(Paciente::class);
+    }
+
+    public function pesquisadores()
+    {
+        return $this->hasMany(Pesquisador::class);
+    }
 }
