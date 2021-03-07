@@ -11,7 +11,7 @@ class Pesquisador extends Model
 
     protected $table = 'pesquisadores';
 
-    protected $fillable = ['nome', 'cpf' 'data_nascimento'];
+    protected $fillable = ['nome', 'cpf', 'data_nascimento'];
 
     public function sexo()
     {

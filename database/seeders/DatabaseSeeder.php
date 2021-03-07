@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use App\Models\Pesquisador;
+use App\Models\Paciente;
 
 class DatabaseSeeder extends Seeder
 {
@@ -26,7 +28,7 @@ class DatabaseSeeder extends Seeder
             $this->call(UfSeeder::class);
         }
 
-        if(DB::table('municipions')->count() == 0)
+        if(DB::table('municipios')->count() == 0)
         {
             $this->call(MunicipioSeeder::class);
         }
@@ -34,6 +36,16 @@ class DatabaseSeeder extends Seeder
         if(DB::table('doencas')->count() == 0)
         {
             $this->call(DoencaSeeder::class);
+        }
+
+        if(DB::table('pesquisadores')->count() == 0)
+        {
+            Pesquisador::factory()->count(7)->make();
+        }
+
+        if(DB::table('pacientes')->count() == 0)
+        {
+            Paciente::factory()->count(20)->make();
         }
 
     }
