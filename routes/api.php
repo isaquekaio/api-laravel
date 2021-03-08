@@ -2,7 +2,11 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\API\DoencaController;
+use App\Http\Controllers\API\PacienteController;
+use App\Http\Controllers\API\PesquisadorController;
+use App\Http\Controllers\API\ApiAuthController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -17,3 +21,19 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::group(['middleware' => ['cors', 'json.response']], function () {
+    Route::post('/acesso', [ApiAuthController::class, 'login'])->name('login.api');
+    Route::post('/cadastro', [ApiAuthController::class, 'register'])->name('register.api');
+});
+
+
+Route::apiResources([
+    'doencas' => DoencaController::class,
+    'pacientes' => PacienteController::class,
+    'pesquisadores' => PesquisadorController::class,
+]);
+
+
+
+//->except(['destroy']);
