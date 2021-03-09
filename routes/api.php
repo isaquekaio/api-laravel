@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\API\DoencaController;
 use App\Http\Controllers\API\PacienteController;
 use App\Http\Controllers\API\PesquisadorController;
+use App\Http\Controllers\API\LocalidadeController;
 use App\Http\Controllers\API\AuthController;
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +39,10 @@ Route::apiResources([
     'pesquisadores' => PesquisadorController::class,
 ]);
 
-
+Route::get('localidade/{id?}', [LocalidadeController::class, 'index']);
+Route::post('localidade/uf', [LocalidadeController::class, 'store_uf']);
+Route::put('localidade/uf/{id}', [LocalidadeController::class, 'update_uf']);
+Route::post('localidade/municipio', [LocalidadeController::class, 'store_municipio']);
+Route::put('localidade/municipio/{id}', [LocalidadeController::class, 'update_municipio']);
 
 //->except(['destroy']);

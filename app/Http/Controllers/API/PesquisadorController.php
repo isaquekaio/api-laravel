@@ -73,7 +73,7 @@ class PesquisadorController extends Controller
             'cpf' => 'required|max:11|min:11',
             'data_nascimento' => 'required|date',
             'sexo_id' => 'exists:sexos,id',
-            'uf_is' => 'exists:ufs,id',
+            'uf_id' => 'exists:ufs,id',
             'municipio_id' => 'exists:municipios,id',
 
         ]);

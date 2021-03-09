@@ -72,7 +72,7 @@ class PacienteController extends Controller
             'data_nascimento' => 'required|date',
             'sus' => 'required|max:15|min:15',
             'sexo_id' => 'exists:sexos,id',
-            'uf_is' => 'exists:ufs,id',
+            'uf_id' => 'exists:ufs,id',
             'municipio_id' => 'exists:municipios,id',
 
         ]);

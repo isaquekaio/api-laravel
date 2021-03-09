@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Doenca;
 
 class Paciente extends Model
 {
@@ -26,4 +27,8 @@ class Paciente extends Model
         return $this->belongsTo(Municipio::class, 'municipio_id');
     }
 
+    public function doencas()
+    {
+        return $this->belongsToMany(Doenca::class, 'doencas_tem_pacientes');
+    }
 }

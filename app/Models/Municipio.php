@@ -11,6 +11,11 @@ class Municipio extends Model
 
     protected $fillable = ['nome', 'uf_id',];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
+
     public function uf()
     {
         return $this->belongsTo(State::class, 'uf_id');

@@ -11,6 +11,11 @@ class Uf extends Model
 
     protected $fillable = ['nome', 'sigla'];
     
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
+
     public function municipios()
     {
         return $this->hasMany(Municipio::class);
