@@ -31,20 +31,13 @@ class DoencaController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'title' => 'required|max:300|min:3',
+            'nome' => 'required|max:300|min:3',
         ]);
 
         $doenca = Doenca::create($data);
-
-        if ($doenca) {
-            return response([
-                'message' => 'Doença cadastrado!'], 201
-            );
-        } else {
-            return response([
-                'message' => 'Falha ao cadastrar doença'], 412
-            );
-        }
+        return response([
+            'message' => 'Doença cadastrado!'], 201
+        );
     }
 
     /**
@@ -70,20 +63,15 @@ class DoencaController extends Controller
     public function update(Request $request, Doenca $doenca)
     {
         $data = $request->validate([
-            'title' => 'required|max:300|min:3',
+            'nome' => 'required|max:300|min:3',
         ]);
 
         $doenca->update($data);
-
-        if ($doenca) {
-            return response([
-                'message' => 'Atualização feita com sucesso!'
-            ], 204);
-        } else {
-            return response([
-                'message' => 'Falha ao atualizar'
-            ], 412);
-        }
+        
+        return response([
+            'message' => 'Atualização feita com sucesso!'
+        ], 200);
+        
     }
 
     /**

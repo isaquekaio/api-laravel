@@ -17,7 +17,7 @@ class PesquisadorController extends Controller
     {
         $pesquisadors = Pesquisador::all();
         return response([
-            'pesquisadors' => $pesquisadors], 200
+            'pesquisadores' => $pesquisadors], 200
         );
     }
 
@@ -33,23 +33,17 @@ class PesquisadorController extends Controller
             'nome' => 'required|max:300|min:2',
             'cpf' => 'required|max:11|min:11',
             'data_nascimento' => 'required|date',
-            'sexo_id' => 'exists:sexos,id',
-            'uf_is' => 'exists:ufs,id',
+            'uf_id' => 'exists:ufs,id',
             'municipio_id' => 'exists:municipios,id',
-
+            'sexo_id' => 'exists:sexos,id',
         ]);
 
-        $pesquisador = Pesquisador::create($data);
-
-        if ($pesquisador) {
-            return response([
-                'message' => 'Pesquisador cadastrado com sucesso!'], 201
-            );
-        } else {
-            return response([
-                'message' => 'Falha ao cadastrar Pesquisador'], 412
-            );
-        }
+        Pesquisador::create($data);
+     
+        return response([
+            'message' => 'Pesquisador cadastrado com sucesso!'], 201
+        );
+ 
     }
 
     /**
@@ -86,15 +80,9 @@ class PesquisadorController extends Controller
 
         $pesquisador->update($data);
 
-        if ($pesquisador) {
-            return response([
-                'message' => 'Pesquisador atualizado com sucesso!'], 201
-            );
-        } else {
-            return response([
-                'message' => 'Falha ao atualizado Pesquisador'], 412
-            );
-        }
+        return response([
+            'message' => 'Pesquisador atualizado com sucesso!'], 200
+        );
     }
 
     /**

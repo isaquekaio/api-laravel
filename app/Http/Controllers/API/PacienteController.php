@@ -33,23 +33,16 @@ class PacienteController extends Controller
             'nome' => 'required|max:300|min:2',
             'data_nascimento' => 'required|date',
             'sus' => 'required|max:15|min:15',
-            'sexo_id' => 'exists:sexos,id',
-            'uf_is' => 'exists:ufs,id',
+            'uf_id' => 'exists:ufs,id',
             'municipio_id' => 'exists:municipios,id',
-
+            'sexo_id' => 'exists:sexos,id',
         ]);
 
-        $paciente = Paciente::create($data);
+        Paciente::create($data);
 
-        if ($paciente) {
-            return response([
-                'message' => 'Paciente cadastrado com sucesso!'], 201
-            );
-        } else {
-            return response([
-                'message' => 'Falha ao cadastrar Paciente'], 412
-            );
-        }
+        return response([
+            'message' => 'Paciente cadastrado com sucesso!'], 201
+        );
     }
 
     /**
@@ -85,16 +78,10 @@ class PacienteController extends Controller
         ]);
 
         $paciente->update($data);
-
-        if ($paciente) {
-            return response([
-                'message' => 'Paciente atualizado com sucesso!'], 201
-            );
-        } else {
-            return response([
-                'message' => 'Falha ao atualizado Paciente'], 412
-            );
-        }
+        
+        return response([
+            'message' => 'Paciente atualizado com sucesso!'], 200
+        ); 
     }
 
     /**

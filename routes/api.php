@@ -6,7 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\API\DoencaController;
 use App\Http\Controllers\API\PacienteController;
 use App\Http\Controllers\API\PesquisadorController;
-use App\Http\Controllers\API\ApiAuthController;
+use App\Http\Controllers\API\AuthController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -22,11 +22,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group(['middleware' => ['cors', 'json.response']], function () {
-    Route::post('/acesso', [ApiAuthController::class, 'login'])->name('login.api');
-    Route::post('/cadastro', [ApiAuthController::class, 'register'])->name('register.api');
+Route::post('/acesso', [AuthController::class, 'login'])->name('login.api');
+Route::post('/cadastro', [AuthController::class, 'register'])->name('register.api');
+
+Route::middleware('auth:api')->group(function () {
+    Route::post('/sair', [AuthController::class, 'logout'])->name('logout.api');
 });
 
+
+// Módulo Gestão
 
 Route::apiResources([
     'doencas' => DoencaController::class,
