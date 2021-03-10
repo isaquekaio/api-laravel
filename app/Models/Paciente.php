@@ -12,6 +12,11 @@ class Paciente extends Model
 
     protected $fillable = ['nome', 'data_nascimento', 'sus', 'sexo_id', 'uf_id', 'municipio_id'];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
+
     public function sexo()
     {
         return $this->belongsTo(Sexo::class, 'sexo_id');

@@ -39,6 +39,9 @@ Route::apiResources([
     'pesquisadores' => PesquisadorController::class,
 ]);
 
+Route::post('pacientes/{id}/doenca', [PacienteController::class, 'associar_doenca']);
+Route::post('pacientes/{id}/desassociar_doenca', [PacienteController::class, 'desassociar_doenca']);
+
 Route::get('localidade/{id?}', [LocalidadeController::class, 'index']);
 Route::post('localidade/uf', [LocalidadeController::class, 'store_uf']);
 Route::put('localidade/uf/{id}', [LocalidadeController::class, 'update_uf']);

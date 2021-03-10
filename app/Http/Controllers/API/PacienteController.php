@@ -15,7 +15,7 @@ class PacienteController extends Controller
      */
     public function index()
     {
-        $pacientes = Paciente::all();
+        $pacientes = Paciente::with('doencas')->get();
         return response([
             'pacientes' => $pacientes
         ], 200);
@@ -45,6 +45,55 @@ class PacienteController extends Controller
         );
     }
 
+    public function associar_doenca(Request $request, $id)
+    {
+        $data = $request->validate([
+            'doencas' => ['exists:doencas,id'],
+        ]);
+
+        $paciente = Paciente::find($id);
+
+        if ($data && count($data['doencas']) != 0 && $paciente == true)
+        {
+            $paciente->doencas()->syncWithoutDetaching($data['doencas']);
+            $message = 'Doenças associada ao paciente';
+            $status = 200;
+        }
+        else {
+            $message = 'Falha ao associar doença(s)!';
+            $status = 412;
+        }
+
+        return response([
+            'message' => $message
+        ], $status);
+    }
+
+    public function desassociar_doenca(Request $request, $id)
+    {
+        $data = $request->validate([
+            'doencas' => ['exists:doencas,id'],
+        ]);
+
+        $paciente = Paciente::find($id);
+
+        if ($data && count($data['doencas']) != 0 && $paciente == true)
+        {
+            $paciente->doencas()->detach($data['doencas']);
+            $message = 'Doenças desassociada do paciente.';
+            $status = 200;
+        }
+        else {
+            $message = 'Falha ao desassociada  doença(s).';
+            $status = 412;
+        }
+
+        return response([
+            'message' => $message
+        ], $status);
+    }
+
+
     /**
      * Display the specified resource.
      *
@@ -53,8 +102,9 @@ class PacienteController extends Controller
      */
     public function show(Paciente $paciente)
     {
+        $p = Paciente::with('doencas')->find($paciente->id);
         return response([
-            'paciente' => $paciente
+            'paciente' => $p
         ], 200);
     }
 
