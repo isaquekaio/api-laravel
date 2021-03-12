@@ -19,10 +19,11 @@ use App\Http\Controllers\API\AuthController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
+/*
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+*/
 
 Route::post('/acesso', [AuthController::class, 'login'])->name('login.api');
 Route::post('/cadastro', [AuthController::class, 'register'])->name('register.api');
@@ -45,8 +46,6 @@ Route::middleware('auth:api')->group(function () {
     Route::post('localidade/municipio', [LocalidadeController::class, 'store_municipio']);
     Route::put('localidade/municipio/{id}', [LocalidadeController::class, 'update_municipio']);
 });
-
-//->except(['destroy']);
 
 // Módulo Transparencia
 Route::get('localidade/{id?}', [LocalidadeController::class, 'index']);
