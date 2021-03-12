@@ -35,7 +35,7 @@ class AuthController extends Controller
         ]);
 
         if (!auth()->attempt($loginData)) {
-            return response(['message' => 'This User does not exist, check your details'], 400);
+            return response(['message' => 'Este usuário não existe, verifique seus detalhes'], 400);
         }
 
         $accessToken = auth()->user()->createToken('authToken')->accessToken;
@@ -47,7 +47,7 @@ class AuthController extends Controller
     {
         $token = $request->user()->token();
         $token->revoke();
-        $response = ['message' => 'You have been successfully logged out!'];
+        $response = ['message' => 'Você foi desconectado com sucesso!'];
         return response($response, 200);
     }
 }

@@ -7,6 +7,7 @@ use App\Http\Controllers\API\DoencaController;
 use App\Http\Controllers\API\PacienteController;
 use App\Http\Controllers\API\PesquisadorController;
 use App\Http\Controllers\API\LocalidadeController;
+use App\Http\Controllers\API\TransparenciaController;
 use App\Http\Controllers\API\AuthController;
 /*
 |--------------------------------------------------------------------------
@@ -26,12 +27,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('/acesso', [AuthController::class, 'login'])->name('login.api');
 Route::post('/cadastro', [AuthController::class, 'register'])->name('register.api');
 
-Route::middleware('auth:api')->group(function () {
+// Módulo Gestão
+Route::middleware('auth:api')->group(function () {   
     Route::post('/sair', [AuthController::class, 'logout'])->name('logout.api');
 });
-
-
-// Módulo Gestão
 
 Route::apiResources([
     'doencas' => DoencaController::class,
@@ -42,10 +41,15 @@ Route::apiResources([
 Route::post('pacientes/{id}/doenca', [PacienteController::class, 'associar_doenca']);
 Route::post('pacientes/{id}/desassociar_doenca', [PacienteController::class, 'desassociar_doenca']);
 
-Route::get('localidade/{id?}', [LocalidadeController::class, 'index']);
 Route::post('localidade/uf', [LocalidadeController::class, 'store_uf']);
 Route::put('localidade/uf/{id}', [LocalidadeController::class, 'update_uf']);
 Route::post('localidade/municipio', [LocalidadeController::class, 'store_municipio']);
 Route::put('localidade/municipio/{id}', [LocalidadeController::class, 'update_municipio']);
 
+
 //->except(['destroy']);
+
+// Módulo Transparencia
+Route::get('localidade/{id?}', [LocalidadeController::class, 'index']);
+Route::get('listar', [TransparenciaController::class, 'listar']);
+Route::get('filtro', [TransparenciaController::class, 'filtro']);

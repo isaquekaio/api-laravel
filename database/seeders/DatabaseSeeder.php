@@ -4,8 +4,9 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use App\Models\Pesquisador;
 use App\Models\Paciente;
+use App\Models\Doenca;
+use App\Models\User;
 
 class DatabaseSeeder extends Seeder
 {
@@ -16,8 +17,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
-
         if(DB::table('sexos')->count() == 0)
         {
             $this->call(SexoSeeder::class);
@@ -38,15 +37,25 @@ class DatabaseSeeder extends Seeder
             $this->call(DoencaSeeder::class);
         }
 
+        /*
+        if(DB::table('pacientes')->count() == 0)
+        {  
+            $doencas = DB::table('doencas')->pluck('id');
+            Paciente::factory()->count(50)->create()->each(function (Paciente $paciente) use ($doencas){
+                $paciente->doencas()->attach($doencas->random(5));
+            });     
+        }
+        
+
         if(DB::table('pesquisadores')->count() == 0)
         {
-            Pesquisador::factory()->count(7)->make();
+            Pesquisador::factory()->count(10)->create();
         }
 
-        if(DB::table('pacientes')->count() == 0)
+        if(DB::table('users')->count() == 0)
         {
-            Paciente::factory()->count(20)->make();
+            User::factory()->count(2)->create();
         }
-
+        */
     }
 }
