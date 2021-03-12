@@ -42,11 +42,13 @@
 
 * `php artisan passport:client --personal`
 
-#### Para usar o sistema
+#### Para testar o sistema
 
-* Abra o seu navegador de internet e digite: 
+* É necessario é uma ferramenta que possa ser utilizada para testar serviços RESTful, como exemplo o [postman](https://www.postman.com/downloads/) e o [insomnia](https://insomnia.rest/download).
 
-`localhost:8000/api/`
+* A documentação da API está nas duas tabelas a seguir.
+
+* Para ter acesso ao **Módulo Gestão** é necessário cadastrar um usuário e depois realizar o login através da rota `localhost:8000/api/acesso` 
 
 ## Documentação da API
 
@@ -57,7 +59,7 @@
     <tr>
     <th class="tg-0lax">Grupo</th>
         <th class="tg-0pky">URL</th>
-        <th class="tg-0pky">Tipo</th>
+        <th class="tg-0pky">Verbo HTTP</th>
         <th class="tg-0pky">Campos para o ENVIO</th>
         <th class="tg-0pky">Exemplo de Retorno JSON</th>
         <th class="tg-0lax">Descrição</th>
@@ -79,7 +81,7 @@
       },
       "access_token": "eyJ0eXAiOiJKV1QiLC ..."
       }</td>
-        <td class="tg-0lax">Cadastrando do usuário</td>
+        <td class="tg-0lax">Cadastrando usuário</td>
     </tr>
     <tr>
         <td class="tg-0pky">localhost:8000/api/acesso</td>

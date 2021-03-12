@@ -67,11 +67,11 @@ class DoencaController extends Controller
         ]);
 
         $doenca->update($data);
-        
+
         return response([
             'message' => 'Atualização feita com sucesso!'
         ], 200);
-        
+
     }
 
     /**
