@@ -79,10 +79,10 @@
       },
       "access_token": "eyJ0eXAiOiJKV1QiLC ..."
       }</td>
-        <td class="tg-0lax">Cadastro do usuário e o retorno dos seus dados junto com o token</td>
+        <td class="tg-0lax">Cadastrando do usuário</td>
     </tr>
     <tr>
-    <td class="tg-0pky">localhost:8000/api/acesso</td>
+        <td class="tg-0pky">localhost:8000/api/acesso</td>
         <td class="tg-0pky">POST</td>
         <td class="tg-0pky">"email", "password"</td>
         <td class="tg-0lax">{
@@ -96,7 +96,7 @@
       },
       "access_token": "eyJ0eXAiOiJKV1QiLCJh..."
        }</td>
-        <td class="tg-0lax">Login do usuário no sistema e o retorno é o seus dados junto com o token</td>
+        <td class="tg-0lax">Login do usuário no sistema</td>
     </tr>
     <tr>
         <td class="tg-0pky" rowspan="3">Doenças</td>
@@ -116,8 +116,8 @@
             {
               "id": 3,
               "nome": "Arterite de Takayasu"
-    }, ... </td>
-        <td class="tg-0pky">Retorna as doencas cadastrada na base de dados</td>
+        }, ... </td>
+        <td class="tg-0pky">Listar doenças</td>
     </tr>
     <tr>
         <td class="tg-0pky">localhost:8000/api/doencas</td>
@@ -126,19 +126,19 @@
         <td class="tg-0pky">{
             "message": "Doença cadastrado!"
         }</td>
-        <td class="tg-0pky">Cadastro de doença e o retorno é uma mensagem</td>
+        <td class="tg-0pky">Cadastrando doença</td>
     </tr>
     <tr>
-        <td class="tg-0pky">localhost:8000/api/doencas</td>
+        <td class="tg-0pky">localhost:8000/api/doencas/{id}</td>
         <td class="tg-0pky">PUT</td>
         <td class="tg-0pky">"nome"</td>
         <td class="tg-0pky">{
             "message": "Atualização feita com sucesso!"
         }</td>
-        <td class="tg-0pky">Atualização de doença e o retorno é uma mensagem</td>
+        <td class="tg-0pky">Atualização dados de uma doença</td>
     </tr>
     <tr>
-        <td class="tg-0pky" rowspan="6">Pacientes</td>
+        <td class="tg-0pky" rowspan="5">Pacientes</td>
         <td class="tg-0pky">localhost:8000/api/pacientes</td>
         <td class="tg-0pky">GET</td>
         <td class="tg-0pky"> - </td>
@@ -165,7 +165,7 @@
         <td class="tg-0pky">{
             "message": "Paciente cadastrado com sucesso!"
         }</td>
-        <td class="tg-0pky">Cadastro de paciente e o retorno é uma mensagem</td>
+        <td class="tg-0pky">Cadastrando paciente</td>
     </tr>
     <tr>
         <td class="tg-0pky">localhost:8000/api/pacientes/{id}</td>
@@ -174,7 +174,7 @@
         <td class="tg-0pky">{
             "message": "Paciente Atualizado com sucesso!"
         }</td>
-        <td class="tg-0pky">Atualizar os dados do paciente e o retorno é uma mensagem</td>
+        <td class="tg-0pky">Atualizar os dados do paciente</td>
     </tr>
     <tr>
         <td class="tg-0pky">localhost:8000/api/pacientes/{id}/doenca</td>
@@ -193,6 +193,84 @@
             "message": "Doenças desassociada do paciente."
         }</td>
         <td class="tg-0pky">Desassociar doenças ao paciente</td>
+    </tr>
+    <tr>
+        <td class="tg-0pky" rowspan="3">Pesquisadores</td>
+        <td class="tg-0pky">localhost:8000/api/pesquisadores</td>
+        <td class="tg-0pky">GET</td>
+        <td class="tg-0pky"> - </td>
+        <td class="tg-0pky">{
+          "pesquisadores": [
+            {
+              "id": 1,
+              "nome": "João Guilherme Moura",
+              "cpf": "11122233344",
+              "data_nascimento": "2004-01-01",
+              "uf_id": 11,
+              "municipio_id": 110001,
+              "sexo_id": 1
+            }
+          ]
+        }</td>
+        <td class="tg-0pky">Listas os pesquisadores</td>
+    </tr>
+    <tr>
+        <td class="tg-0pky">localhost:8000/api/pesquisadores</td>
+        <td class="tg-0pky">POST</td>
+        <td class="tg-0pky">"nome","data_nascimento","cpf","sexo_id","uf_id",
+	"municipio_id"</td>
+        <td class="tg-0pky">{
+            "message": "Pesquisador cadastrado com sucesso!"
+        }</td>
+        <td class="tg-0pky">Cadastrando Pesquisador</td>
+    </tr>
+    <tr>
+        <td class="tg-0pky">localhost:8000/api/pesquisadores/{id}</td>
+        <td class="tg-0pky">PUT</td>
+        <td class="tg-0pky">"nome","data_nascimento","cpf","sexo_id","uf_id",
+	"municipio_id"</td>
+        <td class="tg-0pky">{
+            "message": "Pesquisador cadastrado com sucesso!"
+        }</td>
+        <td class="tg-0pky">Atualizando dados do Pesquisador</td>
+    </tr>
+    <tr>
+        <td class="tg-0pky" rowspan="2">UF</td>
+        <td class="tg-0pky">localhost:8000/api/localidade/uf</td>
+        <td class="tg-0pky">POST</td>
+        <td class="tg-0pky">"nome","sigla"</td>
+        <td class="tg-0pky">{
+          "message": "Uf cadastrado com sucesso!"
+        }</td>
+        <td class="tg-0pky">Cadastrar UF</td>
+    </tr>
+    <tr>
+        <td class="tg-0pky">localhost:8000/api/localidade/uf/{id}</td>
+        <td class="tg-0pky">PUT</td>
+        <td class="tg-0pky">"nome","sigla"</td>
+        <td class="tg-0pky">{
+          "message": "Uf atualizada com sucesso!"
+        }</td>
+        <td class="tg-0pky">Atualizar UF</td>
+    </tr>
+    <tr>
+        <td class="tg-0pky" rowspan="2">Municipios</td>
+        <td class="tg-0pky">localhost:8000/api/localidade/municipio</td>
+        <td class="tg-0pky">POST</td>
+        <td class="tg-0pky">"nome","uf_id"</td>
+        <td class="tg-0pky">{
+          "message": "Municipio cadastrado com sucesso!"
+        }</td>
+        <td class="tg-0pky">Cadastrando Municipio</td>
+    </tr>
+    <tr>
+        <td class="tg-0pky">localhost:8000/api/localidade/municipio/{id}</td>
+        <td class="tg-0pky">PUT</td>
+        <td class="tg-0pky">"nome","uf_id"</td>
+        <td class="tg-0pky">{
+          "message": "Municipio atualizada com sucesso!"
+        }</td>
+        <td class="tg-0pky">Atualizar Municipio</td>
     </tr>
 </tbody>
 </table>
