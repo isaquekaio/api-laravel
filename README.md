@@ -276,3 +276,80 @@
 </table>
 
 ### Módulo Transparência
+
+<table class="tg">
+<thead>
+    <tr>
+    <th class="tg-0lax">Grupo</th>
+        <th class="tg-0pky">URL</th>
+        <th class="tg-0pky">Tipo</th>
+        <th class="tg-0pky">Campos para o ENVIO</th>
+        <th class="tg-0pky">Exemplo de Retorno JSON</th>
+        <th class="tg-0lax">Descrição</th>
+    </tr>
+</thead>
+<tbody>
+    <tr>
+        <td class="tg-0pky" rowspan="3">Busca</td>
+        <td class="tg-0pky">localhost:8000/api/localidade/{id}</td>
+        <td class="tg-0pky">GET</td>
+        <td class="tg-0pky"> - </td>
+        <td class="tg-0pky">{
+          "municipios": [
+            {
+              "id": 11,
+              "nome": "Rondônia",
+              "sigla": "RO",
+              "municipios": [
+                {
+                  "id": 110001,
+                  "nome": "Alta Floresta D'Oeste",
+                  "uf_id": 11
+                },
+                {
+                  "id": 110037,
+                  "nome": "Alto Alegre dos Parecis",
+                  "uf_id": 11
+                }, ...
+        </td>
+        <td class="tg-0pky">Lista UF ou exibir uma UF e seus Municipios</td>
+    </tr>
+    <tr>
+        <td class="tg-0pky">localhost:8000/api/listar</td>
+        <td class="tg-0pky">GET</td>
+        <td class="tg-0pky"> - </td>
+        <td class="tg-0pky"> "sexos": [
+        {
+          "id": 1,
+          "nome": "M"
+        },
+        {
+          "id": 2,
+          "nome": "F"
+        }
+      ],
+      "faixa": [
+        {
+          "1": "00-18",
+          "2": "19-25",
+          "3": "26-35",
+          "4": "36-50",
+          "5": "51-60",
+          "6": "60-70",
+          "7": "70-80",
+          "8": "80-100"
+        }
+      ]</td>
+        <td class="tg-0pky">Lista dados que serião apresentado dentro de um select (doenças, sexos, faixas)</td>
+    </tr>
+    <tr>
+        <td class="tg-0pky">localhost:8000/api/filtro</td>
+        <td class="tg-0pky">GET</td>
+        <td class="tg-0pky">"doenca_id", "uf_id", "municipio_id", "sexo_id", "faixa"</td>
+        <td class="tg-0pky">{
+          "pacientes_qtd": 1
+        }</td>
+        <td class="tg-0pky">Listar a quantidade de parciete baseado no filtro</td>
+    </tr>
+<tbody>
+</table>
