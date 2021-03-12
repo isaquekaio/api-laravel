@@ -28,24 +28,23 @@ Route::post('/acesso', [AuthController::class, 'login'])->name('login.api');
 Route::post('/cadastro', [AuthController::class, 'register'])->name('register.api');
 
 // Módulo Gestão
-Route::middleware('auth:api')->group(function () {   
+Route::middleware('auth:api')->group(function () {
     Route::post('/sair', [AuthController::class, 'logout'])->name('logout.api');
+
+    Route::apiResources([
+        'doencas' => DoencaController::class,
+        'pacientes' => PacienteController::class,
+        'pesquisadores' => PesquisadorController::class,
+    ]);
+
+    Route::post('pacientes/{id}/doenca', [PacienteController::class, 'associar_doenca']);
+    Route::post('pacientes/{id}/desassociar_doenca', [PacienteController::class, 'desassociar_doenca']);
+
+    Route::post('localidade/uf', [LocalidadeController::class, 'store_uf']);
+    Route::put('localidade/uf/{id}', [LocalidadeController::class, 'update_uf']);
+    Route::post('localidade/municipio', [LocalidadeController::class, 'store_municipio']);
+    Route::put('localidade/municipio/{id}', [LocalidadeController::class, 'update_municipio']);
 });
-
-Route::apiResources([
-    'doencas' => DoencaController::class,
-    'pacientes' => PacienteController::class,
-    'pesquisadores' => PesquisadorController::class,
-]);
-
-Route::post('pacientes/{id}/doenca', [PacienteController::class, 'associar_doenca']);
-Route::post('pacientes/{id}/desassociar_doenca', [PacienteController::class, 'desassociar_doenca']);
-
-Route::post('localidade/uf', [LocalidadeController::class, 'store_uf']);
-Route::put('localidade/uf/{id}', [LocalidadeController::class, 'update_uf']);
-Route::post('localidade/municipio', [LocalidadeController::class, 'store_municipio']);
-Route::put('localidade/municipio/{id}', [LocalidadeController::class, 'update_municipio']);
-
 
 //->except(['destroy']);
 
