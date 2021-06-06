@@ -65,7 +65,7 @@ class DoencaController extends Controller
         $data = $request->validate([
             'nome' => 'required|max:300|min:3',
         ]);
-
+        
         $doenca->update($data);
 
         return response([

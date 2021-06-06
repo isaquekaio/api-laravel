@@ -8,19 +8,19 @@ use Illuminate\Support\Facades\DB;
 
 class TransparenciaController extends Controller
 {
-    
+
     public function listar ()
     {
         $doencas = DB::table('doencas')->select('id','nome')->get();
         $sexos = DB::table('sexos')->select('id','nome')->get();
         $faixa = array([
-            1 => "00-18", 
+            1 => "00-18",
             2 => "19-25",
-            3 => "26-35", 
-            4 => "36-50", 
-            5 => "51-60", 
-            6 => "60-70", 
-            7 => "70-80", 
+            3 => "26-35",
+            4 => "36-50",
+            5 => "51-60",
+            6 => "60-70",
+            7 => "70-80",
             8 => "80-100"
         ]);
         return response([
@@ -37,6 +37,11 @@ class TransparenciaController extends Controller
         $municipio = $request->get('municipio_id');
         $sexo = $request->get('sexo_id');
         $faixa = $request->get('faixa');
+        $campos_group_by = $request->get('group_by');
+        $campos_order_by = $request->get('order_by');
+
+        $group_by = is_null($campos_group_by) ? null : implode("','",$campos_group_by);
+        $order_by = is_null($campos_order_by) ? null : implode("','", $campos_order_by);
         //intval($faixa);
 
         $pacientes_qtd = DB::table('pacientes')
@@ -52,9 +57,9 @@ class TransparenciaController extends Controller
                 return $query->where('sexo_id', $sexo);
             })->when($faixa != null, function ($query) use ($faixa){
                 $hoje = date("Y");
-                
+
                 $ano_nascimento = $query->pluck('data_nascimento')->map(function ($data) {
-                    return $data->format('Y'); 
+                    return $data->format('Y');
                 });
                 //dd(intval($hoje) - intval($ano_nascimento[1]));
                 //dd(date('Y',strtotime($ano_nascimento[0])));
@@ -62,7 +67,7 @@ class TransparenciaController extends Controller
                 for ($i = 0; $i < $ano_nascimento->count(); $i++){
 
                     $idade = intval($hoje) - intval(date('Y',strtotime($ano_nascimento[$i])));
-                
+
                     if ($faixa == 1 && ($idade >= 0 && $idade <= 18))
                     {
                         return $query;
@@ -97,8 +102,12 @@ class TransparenciaController extends Controller
                         break;
                     }
                 }
+            })->when($group_by != null, function ($query) use ($group_by){
+                return $query->groupBy($group_by);
+            })->when($order_by != null, function ($query) use ($order_by){
+                return $query->orderBy($order_by);
             })->count();
-    
+
         return response([
             'pacientes_qtd' => $pacientes_qtd
         ], 200);
